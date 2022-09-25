@@ -11,7 +11,6 @@ import com.company.utily.CommandLine;
  */
 
 public class InfoCommand implements Command {
-    // TODO: 15.09.2022 Check this SLIDER
     @Override
     public CommandLine execute(CommandLine commandLine) {
 

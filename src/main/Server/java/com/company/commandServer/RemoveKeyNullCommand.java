@@ -11,7 +11,6 @@ public class RemoveKeyNullCommand implements Command {
 
         try {
             long key = Long.parseLong(commandLine.args.get(0));
-            // TODO: 20.09.2022 проверить есть ли такой элемент
             if (StorageManager.check(key)){
                 StorageManager.deliteDragon(key);
             } else {
