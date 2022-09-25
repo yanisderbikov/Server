@@ -36,8 +36,9 @@ public class CreatDragon extends Dragon implements Command {
         CL.serverWaitForAnswer = false;
         CL.servAnswer = dragon.toString();
         CL.needArgs = false;
-        CL.args.clear();
+//        CL.args.clear();
         StorageManager.putDragon(CL.dragonID, dragon);
+        CL.dragonID = 0;
         return CL;
 
     }

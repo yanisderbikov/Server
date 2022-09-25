@@ -8,6 +8,8 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import static com.company.server.ServerRunner.SLIDER;
+
 
 public class ServerTcpTransport {
 
@@ -19,9 +21,35 @@ public class ServerTcpTransport {
         while (true) {
             Socket clientSocket = serverSocket.accept();
 
-            ServerRunner serverRunner = new ServerRunner(clientSocket, serverManager);
-            Thread thread = new Thread(serverRunner);
-            thread.start();
+
+            try {
+                ObjectInputStream objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
+                CommandLine commandLine = null;
+
+                try {
+                    commandLine = (CommandLine) objectInputStream.readObject();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                commandLine = serverManager.runCommand(commandLine);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+
+                objectOutputStream.writeObject(commandLine);
+                objectOutputStream.flush();
+
+                objectInputStream.close();
+                objectOutputStream.close();
+                clientSocket.close();
+                System.out.println(SLIDER);
+            } catch (Exception e){
+                e.printStackTrace();
+                System.out.println("Shit Happened in ServerTcpTransport");
+            }
+
+//            ServerRunner serverRunner = new ServerRunner(clientSocket, serverManager);
+//            Thread thread = new Thread(serverRunner);
+//            thread.start();
 
         }
     }

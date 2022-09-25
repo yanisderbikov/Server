@@ -42,6 +42,8 @@ public class ServerManager {
 //        commandMap.put("remove_greater_key", new RemoveGreaterKeyNullCommand());
         commandMap.put("remove_key", new RemoveKeyNullCommand());
         commandMap.put("save", new SaveCommand());
+        commandMap.put("remove_lower", new RemoveLowerCommand());
+
         // TODO: 14.09.2022
         //  update id {element}
         //

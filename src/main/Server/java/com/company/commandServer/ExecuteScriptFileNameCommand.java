@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -51,9 +52,13 @@ public class ExecuteScriptFileNameCommand implements Command {
                 CommandLine commandLine = new CommandLine();
                 String strAtFile = sc.nextLine();
                 if (strAtFile.equalsIgnoreCase("create")){
-                    commandLine.command = strAtFile;
+                    commandLine.command = "create";
                     for (int i = 0; i < 8; i++) {
-                        commandLine.args.add(i, sc.nextLine());
+                        try {
+                            commandLine.args.add(i, sc.nextLine());
+                        }catch (NoSuchElementException e){
+                            System.err.println("File incorrect");
+                        }
                     }
                 }else {
                     commandLine = scan(strAtFile);

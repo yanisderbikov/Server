@@ -9,7 +9,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * • remove_lower {element} :   удалить из коллекции все элементы,
+ *                              меньшие, чем заданный
+ */
+
 public class RemoveLowerCommand implements Command {
+    // TODO: 25.09.2022 какой-то баг, почему-то удаляет все нах
     public CommandLine execute(CommandLine commandLine){
         System.out.println("выполняется метод remove lower");
         try{

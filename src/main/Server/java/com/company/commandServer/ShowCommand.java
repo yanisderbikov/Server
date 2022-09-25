@@ -21,7 +21,6 @@ public class ShowCommand implements Command {
             builder.append(dragon.toString() + "\n");
         }
         commandLine.serverWaitForAnswer = false;
-        commandLine.needArgs = false;
         commandLine.servAnswer = builder.toString();
         System.out.printf("command '%s' executed\n",commandLine.command );
         return commandLine;
