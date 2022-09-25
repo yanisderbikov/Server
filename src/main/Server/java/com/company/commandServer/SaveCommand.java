@@ -19,11 +19,7 @@ public class SaveCommand implements Command {
         System.out.println("выполняется метод save");
         try {
 
-            Dragons dragons = new Dragons();
-
-            JAXBContext jaxbContext = JAXBContext.newInstance(Dragons.class);
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.marshal(dragons, new File("save.xml"));
+            StorageManager.save();
 
             commandLine.serverWaitForAnswer = false;
             commandLine.servAnswer = "Collection was saved to file 'save.xml'";

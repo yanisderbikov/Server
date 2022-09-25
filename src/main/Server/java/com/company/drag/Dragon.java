@@ -12,9 +12,9 @@ public class Dragon {
     private String creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Integer age; //Значение поля должно быть больше 0, Поле не может быть null
     private Color color; //Поле не может быть null
-    private DragonType type; //Поле может быть null
-    private DragonCharacter character; //Поле может быть null
-    private DragonCave cave; //Поле может быть null
+    private DragonType type = null; //Поле может быть null
+    private DragonCharacter character = null; //Поле может быть null
+    private DragonCave cave = null; //Поле может быть null
 
 
 

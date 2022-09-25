@@ -1,11 +1,16 @@
 package com.company.server;
 
 
+import com.company.commandServer.SaveCommand;
 import com.company.drag.Dragon;
+import com.company.drag.Dragons;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.File;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -27,6 +32,7 @@ public class StorageManager {
     public StorageManager(){
 
     }
+    SaveCommand saveCommand = new SaveCommand();
     static LinkedHashMap<Long, Dragon> dragonMap = new LinkedHashMap<>();
 
     public synchronized static Dragon getDragon(long id) {
@@ -38,6 +44,7 @@ public class StorageManager {
                 .sorted((e1, e2) -> Long.compare(e1.getKey() , e2.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
                         (e1,e2)->e1, LinkedHashMap::new));
+        save();
     }
 
     public synchronized static void putDragon(long id, Dragon dragon) {
@@ -60,6 +67,17 @@ public class StorageManager {
 
     public static synchronized void updateMap(LinkedHashMap<Long,Dragon> dragons){
         dragonMap = dragons;
+    }
+
+    public static synchronized void save(){
+        Dragons dragons = new Dragons();
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Dragons.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.marshal(dragons, new File("save.xml"));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

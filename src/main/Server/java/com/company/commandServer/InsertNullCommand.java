@@ -1,6 +1,9 @@
 package com.company.commandServer;
 
+import com.company.drag.Coordinates;
 import com.company.drag.Dragon;
+import com.company.drag.DragonCave;
+import com.company.drag.DragonType;
 import com.company.server.StorageManager;
 import com.company.utily.CommandLine;
 
@@ -15,11 +18,10 @@ public class InsertNullCommand implements Command {
     public CommandLine execute(CommandLine commandLine){
 
 
-
-        Dragon dragon = new Dragon();
         try {
+            Dragon dragon = createNull();
+            dragon.setId(Long.parseLong(commandLine.args.get(0)));
             StorageManager.putDragon(Long.parseLong(commandLine.args.get(0)), dragon );
-            dragon.setCreationDate(LocalDateTime.now());
             System.out.printf("command '%s' executed\n",commandLine.command );
         } catch (Exception e){
             commandLine.servAnswer = "This key can't be excepted";
@@ -27,5 +29,14 @@ public class InsertNullCommand implements Command {
         }
         commandLine.serverWaitForAnswer = false;
         return commandLine;
+    }
+
+    Dragon createNull(){
+        Dragon dragon = new Dragon();
+        dragon.setCoordinates(new Coordinates("0","0"));
+        dragon.setCave(new DragonCave(0));
+        dragon.setCreationDate(LocalDateTime.now());
+
+        return dragon;
     }
 }
