@@ -25,6 +25,9 @@ public class ServerManager {
     private final List<String> history = new ArrayList<>();
 
     public ServerManager(){
+        LoadCommand load = new LoadCommand();
+        load.loadSaves();
+
         // TODO: 14.09.2022 Докидать оставшиеся команды;
         //  Те кто взаимодействет с объектами должны  быть реализованы с stream API
         commandMap.put("help", new HelpCommand(this));

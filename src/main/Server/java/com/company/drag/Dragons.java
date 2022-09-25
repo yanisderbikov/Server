@@ -18,6 +18,10 @@ public class Dragons {
         this.dragonMap = StorageManager.getDragons();
     }
 
+    public LinkedHashMap<Long, Dragon> getDragonMap() {
+        return dragonMap;
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("");
