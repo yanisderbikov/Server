@@ -43,6 +43,7 @@ public class ServerManager {
         commandMap.put("remove_key", new RemoveKeyNullCommand());
         commandMap.put("save", new SaveCommand());
         commandMap.put("remove_lower", new RemoveLowerCommand());
+        commandMap.put("check_login", new CheckLoginCommand());
 
         // TODO: 14.09.2022
         //  update id {element}

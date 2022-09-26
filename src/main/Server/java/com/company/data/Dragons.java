@@ -1,7 +1,8 @@
-package com.company.drag;
+package com.company.data;
 
 
-import com.company.server.StorageManager;
+import com.company.data.StorageManager;
+import com.company.drag.Dragon;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

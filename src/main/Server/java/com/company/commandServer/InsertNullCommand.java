@@ -3,8 +3,7 @@ package com.company.commandServer;
 import com.company.drag.Coordinates;
 import com.company.drag.Dragon;
 import com.company.drag.DragonCave;
-import com.company.drag.DragonType;
-import com.company.server.StorageManager;
+import com.company.data.StorageManager;
 import com.company.utily.CommandLine;
 
 import java.time.LocalDateTime;

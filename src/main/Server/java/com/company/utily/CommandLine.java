@@ -16,4 +16,5 @@ public class CommandLine implements Serializable {
     public long dragonID;
     public boolean oneArgNeed;
     public boolean needArgs; // if (true) нужно  поставить serverWaitForAmswer = true;
+    public String clientName;
 }

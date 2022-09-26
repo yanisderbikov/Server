@@ -1,9 +1,8 @@
 package com.company.commandServer;
 
 import com.company.drag.Dragon;
-import com.company.drag.Dragons;
-import com.company.server.StorageManager;
-import com.company.utily.CommandLine;
+import com.company.data.Dragons;
+import com.company.data.StorageManager;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;

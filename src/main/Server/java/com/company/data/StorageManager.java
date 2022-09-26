@@ -1,22 +1,15 @@
-package com.company.server;
+package com.company.data;
 
 
 import com.company.commandServer.SaveCommand;
 import com.company.drag.Dragon;
-import com.company.drag.Dragons;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.File;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 	•	Для хранения необходимо использовать коллекцию типа
