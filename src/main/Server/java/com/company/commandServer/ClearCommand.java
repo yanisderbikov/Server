@@ -7,8 +7,15 @@ public class ClearCommand implements Command {
 
     public CommandLine execute(CommandLine commandLine){
 
+
         System.out.println("выполняется метод Clear ");
-        StorageManager.getDragons().clear();
+
+        for (var pair : StorageManager.getDragons().entrySet()){
+            if (pair.getValue().getClientName().equals(commandLine.clientName)){
+                StorageManager.deliteDragon(pair.getKey());
+            }
+        }
+
         commandLine.serverWaitForAnswer = false;
         commandLine.servAnswer = "Коллекция очищена";
         return commandLine;

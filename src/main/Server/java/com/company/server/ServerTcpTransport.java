@@ -37,12 +37,18 @@ public class ServerTcpTransport {
 
                 objectOutputStream.writeObject(commandLine);
                 objectOutputStream.flush();
-
                 objectInputStream.close();
                 objectOutputStream.close();
                 clientSocket.close();
                 System.out.println(SLIDER);
             } catch (Exception e){
+                CommandLine commandLine = new CommandLine();
+                commandLine.servAnswer = "Error";
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
+                objectOutputStream.writeObject(commandLine);
+                objectOutputStream.flush();
+                objectOutputStream.close();
+                clientSocket.close();
                 e.printStackTrace();
                 System.out.println("Shit Happened in ServerTcpTransport");
             }

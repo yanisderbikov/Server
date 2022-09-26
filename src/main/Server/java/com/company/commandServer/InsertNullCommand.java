@@ -20,6 +20,7 @@ public class InsertNullCommand implements Command {
         try {
             Dragon dragon = createNull();
             dragon.setId(Long.parseLong(commandLine.args.get(0)));
+            dragon.setClientName(commandLine.clientName);
             StorageManager.putDragon(Long.parseLong(commandLine.args.get(0)), dragon );
             System.out.printf("command '%s' executed\n",commandLine.command );
         } catch (Exception e){

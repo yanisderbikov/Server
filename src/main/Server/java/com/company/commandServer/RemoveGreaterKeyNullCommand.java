@@ -6,43 +6,31 @@ import com.company.utily.CommandLine;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 
 /**
+ * remove_greater_key null
  * удалить из коллекции все элементы, ключ которых превышает заданный
  */
 
 public class RemoveGreaterKeyNullCommand implements Command {
     public CommandLine execute(CommandLine commandLine){
-//        try {
-//            long givenKey = Long.parseLong(commandLine.args.get(0));
-//            var dragons = StorageManager.getDragons();
-//            for (var pair : dragons.entrySet()){
-//                long key = pair.getKey();
-//                if (key > givenKey){
-//                    dragons.remove(key, pair.getValue());
-//                }
-//            }
-//            commandLine.servAnswer = "все элементы, выше чем '" + givenKey + "' удалены";
-//        }catch (Exception e){
-//            commandLine.servAnswer = "Can't except that value" + commandLine.args.get(0);
-//        }
-//        commandLine.serverWaitForAnswer = false;
-//        commandLine.needArgs = false;
-//        System.out.println("выполняется метод remove greater key");
-//        return null;
-
+// TODO: 26.09.2022 реализовать правильнуа сортировку
+        System.out.println();
         try{
             long key = Long.parseLong(commandLine.args.get(0));
-            LinkedHashMap<Long, Dragon> dragons = new LinkedHashMap<>();
-            dragons.entrySet().stream()
-                    .filter(e1 -> e1.getKey() > key)
-                    .collect(Collectors.toMap(
-                            Map.Entry::getKey, Map.Entry::getValue,
-                            (e1,e2)->e1, LinkedHashMap::new));
-            StorageManager.updateMap(dragons);
-
+//            LinkedHashMap<Long, Dragon> dragons;
+//            dragons = StorageManager.getDragons();
+//            dragons = dragons.entrySet().stream()
+//                    .filter(e1 -> e1.getValue().getClientName().equals(commandLine.clientName))
+//                    .filter(e1 -> e1.getKey() > key)
+//                    .collect(Collectors.toMap(
+//                            Map.Entry::getKey, Map.Entry::getValue,
+//                            (e1,e2)->e1, LinkedHashMap::new));
+//            StorageManager.updateMap(dragons);
+            filter(key, commandLine);
             commandLine.servAnswer = "filtered";
             commandLine.serverWaitForAnswer = false;
             System.out.printf("command '%s' executed\n",commandLine.command );
@@ -53,5 +41,16 @@ public class RemoveGreaterKeyNullCommand implements Command {
             return commandLine;
         }
 
+    }
+
+    void filter(long key, CommandLine CL){
+        LinkedHashMap<Long, Dragon> dragons = StorageManager.getDragons();
+        var d = dragons.entrySet()
+                .stream()
+                .flatMap(k -> k.getKey().describeConstable().stream())
+                .filter(k -> k > key)
+                .filter(k -> dragons.get(k).getClientName().equals(CL.clientName))
+                .peek(StorageManager::deliteDragon)
+                .toList();
     }
 }

@@ -56,6 +56,7 @@ public class CreatDragon extends Dragon implements Command {
         DragonCharacter character = DragonCharacter.valueOf(CL.args.get(6).toUpperCase());
         DragonCave cave = new DragonCave(Long.parseLong(CL.args.get(7)));
 
+        dragon.setClientName(CL.clientName);
         dragon.setName(name);
         dragon.setCoordinates(coordinates);
         dragon.setCreationDate(creationDate);

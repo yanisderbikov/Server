@@ -15,7 +15,6 @@ public class ServerManager {
         Command command = commandMap.get(commandLine.command);
         commandLine = command.execute(commandLine);
 
-        System.out.println("Эта хуита сработала!!!");
         addCommandToHistory(commandLine.command);
         return commandLine;
     }
@@ -44,6 +43,8 @@ public class ServerManager {
         commandMap.put("save", new SaveCommand());
         commandMap.put("remove_lower", new RemoveLowerCommand());
         commandMap.put("check_login", new CheckLoginCommand());
+        commandMap.put("remove_greater_key", new RemoveGreaterKeyNullCommand());
+        commandMap.put("update_id", new UpdateIdCommand());
 
         // TODO: 14.09.2022
         //  update id {element}

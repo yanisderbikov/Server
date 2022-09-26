@@ -15,10 +15,16 @@ public class Dragon {
     private DragonType type = null; //Поле может быть null
     private DragonCharacter character = null; //Поле может быть null
     private DragonCave cave = null; //Поле может быть null
+    private String clientName;
 
 
 
 //  getters
+
+
+    public String getClientName() {
+        return clientName;
+    }
 
     public Long getId() {
         return id;
@@ -56,6 +62,11 @@ public class Dragon {
     }
 
 //    setters
+
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
 
     public void setId(Long id) {
         this.id = id;

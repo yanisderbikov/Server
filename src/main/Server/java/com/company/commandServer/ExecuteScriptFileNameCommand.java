@@ -20,6 +20,7 @@ import java.util.Scanner;
 public class ExecuteScriptFileNameCommand implements Command {
     ServerManager serverManager;
     List<CommandLine> listOfCommand;
+    String clientName;
 
     public ExecuteScriptFileNameCommand(ServerManager serverManager){
         this.serverManager = serverManager;
@@ -29,6 +30,7 @@ public class ExecuteScriptFileNameCommand implements Command {
     @Override
     public CommandLine execute(CommandLine commandLine) {
         System.out.println("выполняется метод execute file name cmd");
+        this.clientName = commandLine.clientName;
         if (commandLine.args.size() == 0){
             commandLine.servAnswer = "No inputs";
             commandLine.serverWaitForAnswer = false;
@@ -50,6 +52,7 @@ public class ExecuteScriptFileNameCommand implements Command {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()){
                 CommandLine commandLine = new CommandLine();
+                commandLine.clientName = clientName;
                 String strAtFile = sc.nextLine();
                 if (strAtFile.equalsIgnoreCase("create")){
                     commandLine.command = "create";
