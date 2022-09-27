@@ -45,6 +45,9 @@ public class ServerManager {
         commandMap.put("check_login", new CheckLoginCommand());
         commandMap.put("remove_greater_key", new RemoveGreaterKeyNullCommand());
         commandMap.put("update_id", new UpdateIdCommand());
+        commandMap.put("stop_server", new StopServerCommand());
+        commandMap.put("print_descending", new PrintDescendingCommand());
+        commandMap.put("filter_less_than_view", new FilterLessThanViewViewCommand());
 
         // TODO: 14.09.2022
         //  update id {element}
@@ -60,7 +63,10 @@ public class ServerManager {
             history.remove(0);
     }
 
-    public Set<String> getKeysSetCommand(){
-        return commandMap.keySet();
+    public List<String> getKeysSetCommand(){
+        return commandMap.keySet().stream()
+                .filter(k -> !k.equals("check_login"))
+                .sorted()
+                .toList();
     }
 }

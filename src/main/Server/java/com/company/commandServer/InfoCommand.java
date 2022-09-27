@@ -17,9 +17,6 @@ public class InfoCommand implements Command {
         builder.append("type : LinkedHashMap<Long, Dragon>\n");
         builder.append("size : " + StorageManager.getDragons().size() + "\n");
 
-        builder.append("\n-------------\n");
-        builder.append(StorageManager.getDragons().toString());
-
         commandLine.servAnswer = builder.toString();
         commandLine.serverWaitForAnswer = false;
         System.out.printf("command '%s' executed\n", commandLine.command);

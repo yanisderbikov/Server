@@ -49,9 +49,9 @@ public class StorageManager {
         return dragonMap;
     }
 
-    public static synchronized void deliteDragon(long key){
+    public static synchronized void deleteDragon(long key){
         dragonMap.remove(key);
-        sortDragons();
+        save();
     }
 
     public static synchronized boolean check(long key){

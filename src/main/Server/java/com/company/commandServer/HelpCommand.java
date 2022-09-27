@@ -4,6 +4,7 @@ package com.company.commandServer;
 import com.company.server.ServerManager;
 import com.company.utily.CommandLine;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -20,9 +21,9 @@ public class HelpCommand implements Command {
     public CommandLine execute(CommandLine commandLine){
         //  вызывается переменные БД и ее метод из БД
         System.out.println("running HelpCommand\n-----------------");
-        Set<String> set = serverManager.getKeysSetCommand();
+        List<String> listCmd = serverManager.getKeysSetCommand();
         StringBuilder builder = new StringBuilder("");
-        for (String str : set){
+        for (String str : listCmd){
             builder.append(str + "\n");
         }
 //        отправляемые данные серверу

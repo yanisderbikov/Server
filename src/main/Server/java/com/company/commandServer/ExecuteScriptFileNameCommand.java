@@ -38,6 +38,7 @@ public class ExecuteScriptFileNameCommand implements Command {
         }
         readFile(commandLine.args.get(0));
         executeFile();
+        listOfCommand.clear();
 
         commandLine.serverWaitForAnswer = false;
         commandLine.servAnswer = "Command was executed";
@@ -66,7 +67,10 @@ public class ExecuteScriptFileNameCommand implements Command {
                 }else {
                     commandLine = scan(strAtFile);
                 }
-                listOfCommand.add(commandLine);
+//                Делает проверку, чтобы нельзя было запускать файл, который запускает файл
+                if (!commandLine.command.equals("execute_script")){
+                    listOfCommand.add(commandLine);
+                }
             }
         }catch (IOException e){
             System.err.printf("файл по пути \"%s\" не найден\n", fileName);

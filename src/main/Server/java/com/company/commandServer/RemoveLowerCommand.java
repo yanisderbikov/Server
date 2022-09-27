@@ -6,8 +6,6 @@ import com.company.data.StorageManager;
 import com.company.utily.CommandLine;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * • remove_lower {element} :   удалить из коллекции все элементы,
@@ -39,7 +37,7 @@ public class RemoveLowerCommand implements Command {
                 .flatMap(k -> k.getKey().describeConstable().stream())
                 .filter(k -> k < key)
                 .filter(k -> dragons.get(k).getClientName().equals(CL.clientName))
-                .peek(StorageManager::deliteDragon)
+                .peek(StorageManager::deleteDragon)
                 .toList();
     }
 }

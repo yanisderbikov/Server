@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class PrintDescendingCommand implements Command {
     public CommandLine execute(CommandLine commandLine){
-        System.out.println("running 'print descending'");
+        System.out.printf("command '%s' is running\n",commandLine.command );
         LinkedHashMap<Long, Dragon> dragons = StorageManager.getDragons();
         dragons = dragons.entrySet().stream()
                 .sorted((e1, e2) -> Long.compare(e1.getKey() , -e2.getKey()))

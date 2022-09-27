@@ -14,11 +14,12 @@ import static com.company.server.ServerRunner.SLIDER;
 public class ServerTcpTransport {
 
     ServerManager serverManager = new ServerManager();
+    boolean isTrue = true;
 
     public void execute() throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(9000);
         System.out.println("Server started ");
-        while (true) {
+        while (isTrue) {
             Socket clientSocket = serverSocket.accept();
 
 
@@ -30,6 +31,10 @@ public class ServerTcpTransport {
                     commandLine = (CommandLine) objectInputStream.readObject();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
+                }
+                assert commandLine != null;
+                if (commandLine.command.equals("stop_server")){
+                    isTrue = false;
                 }
 
                 commandLine = serverManager.runCommand(commandLine);
@@ -43,7 +48,7 @@ public class ServerTcpTransport {
                 System.out.println(SLIDER);
             } catch (Exception e){
                 CommandLine commandLine = new CommandLine();
-                commandLine.servAnswer = "Error";
+                commandLine.servAnswer = "Error/serverStopped";
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
                 objectOutputStream.writeObject(commandLine);
                 objectOutputStream.flush();

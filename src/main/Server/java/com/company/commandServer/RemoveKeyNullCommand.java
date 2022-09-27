@@ -11,7 +11,7 @@ public class RemoveKeyNullCommand implements Command {
         try {
             long key = Long.parseLong(commandLine.args.get(0));
             if (StorageManager.check(key)){
-                StorageManager.deliteDragon(key);
+                StorageManager.deleteDragon(key);
             } else {
                 throw new Exception();
             }
