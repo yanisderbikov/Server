@@ -48,6 +48,7 @@ public class ServerManager {
         commandMap.put("stop_server", new StopServerCommand());
         commandMap.put("print_descending", new PrintDescendingCommand());
         commandMap.put("filter_less_than_view", new FilterLessThanViewViewCommand());
+        commandMap.put("sleep", new SleepCommand());
 
         // TODO: 14.09.2022
         //  update id {element}
