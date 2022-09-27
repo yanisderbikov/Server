@@ -10,12 +10,6 @@ public class ClearCommand implements Command {
 
         System.out.println("выполняется метод Clear ");
 
-//        for (var pair : StorageManager.getDragons().entrySet()){
-//            if (pair.getValue().getClientName().equals(commandLine.clientName)){
-//                StorageManager.deliteDragon(pair.getKey());
-//            }
-//        }
-
         var list =
                 StorageManager.getDragons().entrySet().stream()
                 .flatMap(k -> k.getKey().describeConstable().stream())

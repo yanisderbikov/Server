@@ -32,7 +32,7 @@ public class StorageManager {
         return StorageManager.dragonMap.get(id);
     }
 
-    static synchronized void sortDragons(){
+    public static synchronized void sortDragons(){
         dragonMap = dragonMap.entrySet().stream()
                 .sorted((e1, e2) -> Long.compare(e1.getKey() , e2.getKey()))
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
@@ -62,7 +62,7 @@ public class StorageManager {
         dragonMap = dragons;
     }
 
-    public static synchronized void save(){
+    static synchronized void save(){
         Dragons dragons = new Dragons();
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Dragons.class);

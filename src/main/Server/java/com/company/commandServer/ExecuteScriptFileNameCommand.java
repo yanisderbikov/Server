@@ -38,10 +38,13 @@ public class ExecuteScriptFileNameCommand implements Command {
         }
         readFile(commandLine.args.get(0));
         executeFile();
+
+        StringBuilder builder = new StringBuilder("");
+        listOfCommand.forEach(e -> builder.append(e.servAnswer + "\n"));
         listOfCommand.clear();
 
+        commandLine.servAnswer = "Command was executed\n" + builder.toString();
         commandLine.serverWaitForAnswer = false;
-        commandLine.servAnswer = "Command was executed";
         return commandLine;
     }
 

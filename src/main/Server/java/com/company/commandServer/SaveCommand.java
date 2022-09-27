@@ -12,7 +12,7 @@ public class SaveCommand implements Command {
         System.out.println("выполняется метод save");
         try {
 
-            StorageManager.save();
+            StorageManager.sortDragons(); // в методе релализовано сохранение в файл
 
             commandLine.serverWaitForAnswer = false;
             commandLine.servAnswer = "Collection was saved to file 'save.xml'";

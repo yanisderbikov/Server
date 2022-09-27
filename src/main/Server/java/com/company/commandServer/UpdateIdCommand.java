@@ -27,16 +27,19 @@ public class UpdateIdCommand implements Command {
             commandLine.servAnswer = "wrong parameters";
             return commandLine;
         }
+        if (StorageManager.check(key)) {
+            Dragon dragon = StorageManager.getDragon(key);
+            if (commandLine.clientName.equals(dragon.getClientName())){
+                dragon.setId(newKey);
+                commandLine.servAnswer = "you changed id '" + dragon.getName() + "'";
 
-        Dragon dragon = StorageManager.getDragon(key);
-        if (commandLine.clientName.equals(dragon.getClientName())){
-            dragon.setId(newKey);
-            commandLine.servAnswer = "you changed id " + dragon.getName();
-
+            }else {
+                commandLine.servAnswer = "you can't change this obj";
+            }
         }else {
-            commandLine.servAnswer = "you can't change this obj";
+            commandLine.servAnswer = "no such dragon id";
         }
-        StorageManager.save();
+        StorageManager.sortDragons();
         commandLine.serverWaitForAnswer = false;
         System.out.printf("command '%s' executed\n",commandLine.command );
         return commandLine;
