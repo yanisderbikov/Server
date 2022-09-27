@@ -15,6 +15,8 @@ public class CreatePasswords {
         HashMap<String, String> namesPasswords = new HashMap<>();
         namesPasswords.put("Yan", "3445");
         namesPasswords.put("Alex", "reggae12345");
+        namesPasswords.put("Guest", "0");
+        namesPasswords.put("Nikita", "3445");
 
 
         Clients clients = new Clients();

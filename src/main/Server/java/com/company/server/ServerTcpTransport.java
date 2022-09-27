@@ -14,7 +14,11 @@ import static com.company.server.ServerRunner.SLIDER;
 public class ServerTcpTransport {
 
     ServerManager serverManager = new ServerManager();
-    boolean isTrue = true;
+    static boolean isTrue = true;
+
+    public static void setIsTrue(boolean isTrue) {
+        ServerTcpTransport.isTrue = isTrue;
+    }
 
     public void execute() throws IOException, ClassNotFoundException {
         ServerSocket serverSocket = new ServerSocket(9000);
@@ -22,45 +26,9 @@ public class ServerTcpTransport {
         while (isTrue) {
             Socket clientSocket = serverSocket.accept();
 
-
-            try {
-                ObjectInputStream objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
-                CommandLine commandLine = null;
-
-                try {
-                    commandLine = (CommandLine) objectInputStream.readObject();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-                assert commandLine != null;
-                if (commandLine.command.equals("stop_server")){
-                    isTrue = false;
-                }
-
-                commandLine = serverManager.runCommand(commandLine);
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-
-                objectOutputStream.writeObject(commandLine);
-                objectOutputStream.flush();
-                objectInputStream.close();
-                objectOutputStream.close();
-                clientSocket.close();
-                System.out.println(SLIDER);
-            } catch (Exception e){
-                CommandLine commandLine = new CommandLine();
-                commandLine.servAnswer = "Error/serverStopped";
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(clientSocket.getOutputStream());
-                objectOutputStream.writeObject(commandLine);
-                objectOutputStream.flush();
-                objectOutputStream.close();
-                clientSocket.close();
-                e.printStackTrace();
-                System.out.println("Shit Happened in ServerTcpTransport");
-            }
-
-//            ServerRunner serverRunner = new ServerRunner(clientSocket, serverManager);
-//            Thread thread = new Thread(serverRunner);
-//            thread.start();
+            ServerRunner serverRunner = new ServerRunner(clientSocket, serverManager);
+            Thread thread = new Thread(serverRunner);
+            thread.start();
 
         }
     }
