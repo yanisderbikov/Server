@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 public class InsertNullCommand implements Command {
     public CommandLine execute(CommandLine commandLine){
 
-
         try {
             Dragon dragon = createNull();
             dragon.setId(Long.parseLong(commandLine.args.get(0)));

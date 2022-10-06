@@ -17,6 +17,8 @@ public class CreatePasswords {
         namesPasswords.put("Alex", "reggae12345");
         namesPasswords.put("Guest", "0");
         namesPasswords.put("Nikita", "3445");
+        namesPasswords.put("Katya", "9111");
+
 
 
         Clients clients = new Clients();
