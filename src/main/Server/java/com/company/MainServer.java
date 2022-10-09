@@ -8,7 +8,7 @@ public class MainServer {
         try {
             serverTcpTransport.execute();
         } catch (Exception e){
-            System.err.println("Уже заебало");
+            System.err.println("Server down");
             e.printStackTrace();
         }
     }

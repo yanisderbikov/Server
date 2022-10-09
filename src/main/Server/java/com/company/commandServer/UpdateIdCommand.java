@@ -17,6 +17,9 @@ public class UpdateIdCommand implements Command {
 
 //        0 параметр ID существуещего
 //        1 параметр ID на который нужно замениить
+        // TODO: 09.10.2022 сервер попал в рекурсию, когда хотел заменить null
+        
+
         long key;
         long newKey;
         try {
